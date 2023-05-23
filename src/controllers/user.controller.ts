@@ -10,4 +10,8 @@ export class UserController {
   async getUsers(): Promise<User[]> {
     return await this.userService.getUsers();
   }
+  @Get('/create')
+  async createUser(): Promise<User> {
+    return await this.userService.createUser();
+  }
 }

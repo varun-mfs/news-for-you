@@ -12,4 +12,10 @@ export class UserService {
     console.log('Inside user service');
     return await this.userRepository.getAllUsers();
   }
+  async createUser(): Promise<User> {
+    // return 'Hello World!!';
+    // return this.userService.getUsers();
+    console.log('Inside user service');
+    return await this.userRepository.createUser();
+  }
 }

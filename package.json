@@ -20,7 +20,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prisma:gen:user-service": "prisma generate --schema ./prisma/schema.prisma",
     "prisma:migrate:user-service": "prisma migrate dev --schema ./prisma/schema.prisma",
-    "prisma:deploy:user-service": "prisma migrate deploy --schema ./prisma/schema.prisma"
+    "prisma:deploy:user-service": "prisma migrate deploy --schema ./prisma/schema.prisma && npm run start:dev"
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
