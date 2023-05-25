@@ -7,11 +7,9 @@ import { UserRepository } from './dao/user.repository';
 import { PrismaService } from './prisma.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { AuthController } from './auth/auth.conroller';
+import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
-import { JwtService } from '@nestjs/jwt';
 import { UsersService } from './users/users.service';
-// import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [AuthModule, UsersModule],
@@ -22,7 +20,6 @@ import { UsersService } from './users/users.service';
     UserRepository,
     PrismaService,
     AuthService,
-    JwtService,
     UsersService,
   ],
 })

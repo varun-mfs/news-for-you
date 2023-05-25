@@ -7,7 +7,7 @@ import {
 } from '../users/users.user.dto';
 import { JwtPayload } from './jwt.strategy';
 import { PrismaService } from '../prisma.service';
-import { User } from '@prisma/client';
+// import { User } from '@prisma/client';
 // import { hash } from 'bcrypt';
 // import {User} from "../users/user.entity";
 
@@ -52,10 +52,10 @@ export class AuthService {
 
   private _createToken({ email }): any {
     const user: JwtPayload = { email };
-    const Authorization = this.jwtService.sign(user);
+    const token = this.jwtService.sign(user);
     return {
       expiresIn: process.env.EXPIRESIN,
-      Authorization,
+      token,
     };
   }
 
@@ -67,14 +67,3 @@ export class AuthService {
     return user;
   }
 }
-
-// export interface RegistrationStatus {
-//   success: boolean;
-//   message: string;
-//   data?: User;
-// }
-// export interface RegistrationSeederStatus {
-//   success: boolean;
-//   message: string;
-//   data?: User[];
-// }
