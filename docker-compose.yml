@@ -1,14 +1,24 @@
+version: "3.8"
+
 services:
   app:
     build:
       dockerfile: Dockerfile
       context: .
+    # image: varunmfs/news-user-service:1.0
+    container_name: app
     env_file:
     - .env
     ports:
-      - 3000:3000
+      - 8086:8086
     depends_on:
       - postgres
+    networks:
+      - mongo-compass_mongo-network
+    labels:
+      - "traefik.enable=true" # <== Enable traefik to proxy this container
+      - "traefik.http.routers.user-service.rule=Host(`user-service.localhost`)"
+      
   postgres:
     image: postgres
     container_name: postgres
@@ -21,6 +31,8 @@ services:
       - 5432:5432
     volumes:
       - user-service-db:/var/lib/postgresql/data
+    networks:
+      - mongo-compass_mongo-network
 
   pgadmin:
     image: dpage/pgadmin4
@@ -35,8 +47,13 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     # volumes:
     #   - user-service-pgadmin:/var/lib/pgadmin
-    # networks:
-      # - my_network
+    networks:
+      - mongo-compass_mongo-network
+
 volumes:
   user-service-db:
+
+networks:
+  mongo-compass_mongo-network:
+    external: true
   
